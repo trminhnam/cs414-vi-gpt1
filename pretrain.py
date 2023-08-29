@@ -24,6 +24,9 @@ from huggingface_hub import login
 from transformers import pipeline
 
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
+
 login(token="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", add_to_git_credential=True)
 
 # https://huggingface.co/docs/transformers/main_classes/trainer#transformers.TrainingArguments
