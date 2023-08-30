@@ -25,6 +25,7 @@ from transformers import pipeline
 
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["WANDB_PROJECT"] = "gpt1"
 
 
 login(token="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", add_to_git_credential=True)
@@ -110,6 +111,7 @@ model = AutoModelForCausalLM.from_pretrained(CONFIG["model_name_or_path"])
 model_config = AutoConfig.from_pretrained(CONFIG["model_name_or_path"])
 
 # model = AutoModelForCausalLM.from_config(model_config)
+model = model.to("cuda" if torch.cuda.is_available() else "cpu")
 ########################
 
 model.resize_token_embeddings(len(tokenizer))
